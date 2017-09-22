@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<template
+    format="2"
+    revision="2"
+    name="MVP Fragment"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new MVP fragment">
+
+    <category value="MVP" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Fragment Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="CustomFragment"
+        help="The name of the fragment class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(activityClass)}"
+        default="fragment_custom"
+        help="The name of the layout to create for the fragment" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <parameter
+        id="contractClass"
+        name="Contract Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainContract"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Contract"
+        help="The name of the Contract to create" />
+
+    <parameter
+        id="presenterClass"
+        name="Presenter Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainPresenter"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Presenter"
+        help="The name of the Presenter to create" />
+
+    <parameter
+        id="modelClass"
+        name="Model Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainModel"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Model"
+        help="The name of the Model to create" />     
+
+    <execute file="recipe.xml.ftl" />
+
+</template>  
